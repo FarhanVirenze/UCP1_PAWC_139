@@ -10,11 +10,11 @@
 
 <p>Halaman Home</p>
 
-![image](https://github.com/user-attachments/assets/bdb5ac91-699c-45bf-bd4b-3083aadb3243)
+![image](https://github.com/user-attachments/assets/8c7825e5-9745-41e4-af25-67d29608f615)
 
 <p>Halaman About</p>
 
-![image](https://github.com/user-attachments/assets/e0b0d37c-02e0-4266-8d25-ea019ff0d786)
+![image](https://github.com/user-attachments/assets/41e158f0-dc4e-476d-85c7-6dae553b71b9)
 
 <p>Halaman Todos</p>
 
