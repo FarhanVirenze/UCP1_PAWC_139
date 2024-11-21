@@ -1,0 +1,133 @@
+<style>
+    /* General Styling */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: #f9f9f9;
+        overflow-x: hidden;
+    }
+
+    /* Animations */
+    @keyframes frameIn {
+        0% {
+            transform: translateY(100px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    /* Login Container */
+    .login-container {
+        width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        animation: frameIn 1s ease-out;
+        text-align: center;
+        margin-top: 10rem;
+    }
+
+    .login-container h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(90deg, #f8d210, #ff6700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #fff;
+        text-align: left;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: none;
+        padding: 0.8rem;
+        background: rgba(255, 255, 255, 0.2);
+        color: #f9f9f9;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 10px rgba(255, 103, 0, 0.8);
+        outline: none;
+        transform: scale(1.02);
+    }
+
+    /* Button Styling */
+    .btn-primary {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #ff6700, #f8d210);
+        color: #fff;
+        box-shadow: 0 6px 15px rgba(255, 103, 0, 0.4);
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        box-shadow: 0 8px 20px rgba(255, 103, 0, 0.6);
+        transform: translateY(-3px);
+    }
+
+    /* Link Styling */
+    .login-container a {
+        color: #f8d210;
+        font-weight: 500;
+        text-decoration: none;
+        margin-top: 1rem;
+        display: block;
+        transition: color 0.3s ease;
+    }
+
+    .login-container a:hover {
+        color: #ff6700;
+        text-decoration: underline;
+    }
+
+    /* Additional Text Styling */
+    .login-container p {
+        font-size: 0.9rem;
+        color: #e0e0e0;
+        margin-top: 1rem;
+    }
+</style>
+
+
+<div class="login-container">
+    <h1>SignUp</h1>
+    <form action="/signup" method="POST">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Daftar</button>
+    </form>
+    <p>Sudah punya akun? <a href="/login">Login di sini</a>.</p>
+</div>

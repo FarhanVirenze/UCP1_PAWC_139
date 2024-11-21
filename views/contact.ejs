@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Animals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes frameIn {
+            0% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* About Container */
+        .about-container {
+            text-align: center;
+            padding: 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            animation: frameIn 1s ease-out;
+            margin-top: 4rem;
+        }
+
+        .about-container h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #f8d210, #ff6700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-container p {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            max-width: 800px;
+            opacity: 0.9;
+        }
+
+        /* Table Styling */
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        table th,
+        table td {
+            padding: 15px;
+            text-align: center;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        table thead {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        table img {
+            width: 100px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        table img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-container h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-container p {
+                font-size: 1rem;
+            }
+
+            table img {
+                width: 70px;
+            }
+
+            table th, table td {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="about-container">
+        <h1>About Animals</h1>
+        <p>Explore fascinating animals and learn about their unique characteristics and habitats.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="https://www.worldanimalprotection.ca/cdn-cgi/image/width=1280,format=auto/siteassets/shutterstock_2461984615.jpg" alt="Lion"></td>
+                    <td>Lion</td>
+                    <td>The king of the jungle, known for its majestic mane and powerful roar.</td>
+                </tr>
+                <tr>
+                    <td><img src="https://www.antarctica.gov.au/site/assets/files/67423/rs57281.1600x0.jpg" alt="Penguin"></td>
+                    <td>Penguin</td>
+                    <td>A flightless bird found in icy regions, famous for its waddling walk.</td>
+                </tr>
+                <tr>
+                    <td><img src="https://d1jyxxz9imt9yb.cloudfront.net/animal/806/meta_twitter_image/regular/WR202206_GiraffeTranslocation_012_360559_reduced.jpg"" alt="Giraffe"></td>
+                    <td>Giraffe</td>
+                    <td>The tallest land animal, known for its long neck and unique spots.</td>
+                </tr>
+                <tr>
+                    <td><img src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_2x1.jpg" alt="Cat"></td>
+                    <td>Cat</td>
+                    <td>A small, domesticated animal loved for its playful and curious nature.</td>
+                </tr>
+                <tr>
+                    <td><img src="https://cdn.shopify.com/s/files/1/0103/3784/5303/files/Dog_ageing_puppy1jpg.jpg?v=1581589639" alt="Dog"></td>
+                    <td>Dog</td>
+                    <td>A loyal companion and often called a human's best friend.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

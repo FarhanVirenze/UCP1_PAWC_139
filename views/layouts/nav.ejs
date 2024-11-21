@@ -1,0 +1,118 @@
+<style>
+ /* Navbar Styling */
+.navbar {
+    background: linear-gradient(90deg, #ff6700, #f8d210); /* Updated gradient background */
+    padding: 0.25rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+    position: fixed; /* Fix navbar at top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999; /* Ensure navbar is above other content */
+}
+
+/* Brand Styling */
+.navbar-brand {
+    font-size: 2rem;
+    font-weight: 800; /* Bold brand text */
+    color: #fff;
+    transition: color 0.3s ease;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand:hover {
+    color: #f9c74f;
+}
+
+/* Link Styling */
+.nav-link {
+    color: #ffffffcc;
+    font-size: 1.1rem;
+    margin: 0 0.7rem;
+    transition: all 0.3s ease;
+    font-weight: bolder;
+}
+
+.nav-link:hover {
+    color: #f9c74f;
+    text-decoration: underline;
+}
+
+.nav-link.active {
+    color: #f9c74f;
+    font-weight: bold;
+}
+
+/* Button Styling */
+.btn-link {
+    color: #ffffffcc;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: #f9c74f;
+}
+
+/* Navbar Toggler (Mobile Menu) */
+.navbar-toggler {
+    border: 1px solid #fff;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Mobile Menu Background */
+.collapse.show {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+/* Custom Button Styling */
+.custom-btn {
+    background-color: #f9c74f;
+    color: #4e4e4e;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border-radius: 50px; /* Rounded button */
+    transition: background-color 0.3s ease;
+}
+
+.custom-btn:hover {
+    background-color: #f4a261;
+    color: white;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">ZooManager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/todo-view">Todos</a>
+                </li>
+
+                <li class="nav-item">
+                    <form action="/logout" method="POST" class="d-inline">
+                        <button class="custom-btn nav-link" type="submit">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

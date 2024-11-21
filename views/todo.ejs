@@ -1,0 +1,276 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Animal List</h1>
+
+    <!-- Form to Add New Todo -->
+    <form id="addTodoForm" class="my-4 d-flex justify-content-center">
+        <div class="input-group w-75">
+            <input type="text" id="newTask" class="form-control form-control-lg" placeholder="Add a new task..." required>
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-lg btn-primary">Add Task</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- List of Todos -->
+    <div class="card shadow-sm">
+        <ul id="todoList" class="list-group list-group-flush">
+            <% todos.forEach(todo => { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="<%= todo.completed ? 'completed' : '' %> task-text">
+                    <%= todo.task %>
+                </span>
+                <div>
+                    <button class="btn btn-sm btn-outline-success mr-2 editBtn" data-id="<%= todo.id %>">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger deleteBtn" data-id="<%= todo.id %>">Delete</button>
+                </div>
+            </li>
+            <% }); %>
+        </ul>
+    </div>
+
+    <!-- Edit Todo Modal -->
+    <div id="editModal" class="modal fade" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Todo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editTodoForm">
+                        <div class="form-group">
+                            <label for="editTask">Task</label>
+                            <input type="text" id="editTask" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3 w-100">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Add new todo
+        $('#addTodoForm').on('submit', function (e) {
+            e.preventDefault();
+            const task = $('#newTask').val().trim();
+            if (task) {
+                $.ajax({
+                    url: '/todo',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ task: task }),
+                    success: function (newTodo) {
+                        $('#newTask').val("");  // Clear input field
+                        location.reload(); // Reload to show the new todo
+                    },
+                    error: function (error) {
+                        console.error("Error adding task:", error.responseText);
+                    }
+                });
+            }
+        });
+
+        // Delete a todo
+        $('.deleteBtn').on('click', function () {
+            const id = $(this).data('id');
+            $.ajax({
+                url: '/todo/' + id,
+                type: 'DELETE',
+                success: function () {
+                    location.reload(); // Reload to show updated list
+                }
+            });
+        });
+
+        // Show edit modal with the current task
+        let editId;
+        $('.editBtn').on('click', function () {
+            editId = $(this).data('id');
+            const currentTask = $(this).closest('li').find('span').text();
+            $('#editTask').val(currentTask);
+            $('#editModal').modal('show');
+        });
+
+        // Update todo on form submission
+        $('#editTodoForm').on('submit', function (e) {
+            e.preventDefault();
+            const task = $('#editTask').val().trim();
+            if (task) {
+                $.ajax({
+                    url: '/todo/' + editId,
+                    type: 'PUT',
+                    data: JSON.stringify({ task: task, completed: false }),
+                    contentType: 'application/json',
+                    success: function () {
+                        $('#editModal').modal('hide'); // Close modal
+                        location.reload(); // Reload to show the updated todo
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<style>
+  /* General layout */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin-top: 40px;
+}
+
+/* Header Styles */
+h1 {
+    color: #28a745;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bolder;
+    margin-top: 8rem;
+}
+
+/* Task (Animal) styles */
+.task-text {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+    word-wrap: break-word;
+    transition: color 0.3s ease;
+}
+
+.card {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.list-group-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-group-item:hover {
+    background-color: #f1f1f1;
+}
+
+.list-group-item .task-text {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Button Styles */
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-success,
+.btn-outline-danger {
+    border-radius: 30px;
+    border-width: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.btn-outline-success:hover,
+.btn-outline-danger:hover {
+    background-color: #f8f9fa;
+    border-color: #28a745;
+}
+
+/* Modal Styles */
+.modal-content {
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    background-color: #f8f9fa;
+    color: #28a745;
+    border-bottom: 2px solid #ddd;
+}
+
+.modal-header h5 {
+    font-weight: bolder;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Form & Input Styles */
+.input-group {
+    margin-bottom: 20px;
+    border-radius: 0.25rem;
+}
+
+.input-group input,
+.input-group button {
+    border-radius: 0.25rem;
+}
+
+.input-group input {
+    font-size: 1.1rem;
+    padding: 15px;
+}
+
+.input-group button {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.input-group button:hover {
+    background-color: #218838;
+}
+
+/* Modal Save button */
+#editAnimalForm .btn-primary {
+    width: 100%;
+    padding: 12px;
+    border-radius: 30px;
+    background-color: #28a745;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+#editAnimalForm .btn-primary:hover {
+    background-color: #218838;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+    }
+
+    .input-group input, .input-group button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+</style>
