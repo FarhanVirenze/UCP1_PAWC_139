@@ -2,11 +2,11 @@
 
 <p>Halaman SignUp</p>
 
-![image](https://github.com/user-attachments/assets/09568e9d-441b-4c9a-b0a6-4dfe3b6fe57f)
+![image](https://github.com/user-attachments/assets/487d4093-1a2e-41a7-8de3-b1d5cbeab8c1)
 
 <p>Halaman Login</p>
 
-![image](https://github.com/user-attachments/assets/6d43c825-2fc1-459c-929a-7a158bab664e)
+![image](https://github.com/user-attachments/assets/b2df9980-23e5-49b3-b260-221110c807ef)
 
 <p>Halaman Home</p>
 
